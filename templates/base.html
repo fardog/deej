@@ -1,0 +1,96 @@
+{% load dajaxice_templatetags %}{% load compressed %}<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="{% block description %}You are the DJ. You spin the tracks.{% endblock %}" />
+	<meta name="author" content="{% block author %}Far Dog LLC{% endblock %}" />
+	<meta name="keywords" content="dj, deej, audio, music, tunes, magic {% block keywords %}{% endblock %}" />
+	<meta name="copyright" content="Far Dog LLC, Copyright (c) 2013." />
+
+	<title>{% block title %}{% if title %} {{ title }} | {% endif %}Deej{% endblock %}</title>
+	<!-- Google Web Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu:400,700' rel='stylesheet' type='text/css' />
+	<!-- stylesheets -->
+	{% compressed_css 'deej_css' %}
+	{% block additional_stylesheets %} {% endblock %}
+
+	{% compressed_js 'modernizr_js' %}
+	<script>
+		var _gaq=[['_setAccount','UA-36126014-4'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}favicons/apple-touch-icon-144x144-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}favicons/apple-touch-icon-114x114-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}favicons/apple-touch-icon-72x72-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}favicons/apple-touch-icon-precomposed.png" />
+	<link rel="icon" href="{{ STATIC_URL }}favicons/favicon.ico" type="image/x-icon" />
+	<link type="text/plain" rel="author" href="{{ STATIC_URL }}humans.txt" />
+</head>
+<body>
+
+<nav class="top-bar">
+	<ul>
+		<li class="name"><h1><a href="/">Deej</a></h1></li>
+		<li class="toggle-topbar"><a href="#"></a></li>
+	</ul>
+	<section>
+		<ul class="left">
+			<li class="divider"></li>
+		</ul>
+		<ul class="right">
+			<li class="divider"></li>
+			{% if user.is_authenticated %}
+			<li><a href="/logout/">Log out {{ user }}</a></li>
+			{% else %}
+			<li><a href="/register/">Register new DJ</a></li>
+			{% endif %}
+		</ul>
+	</section>
+</nav>
+
+	
+	{% if alert.message %}
+	<div class="alert-box {{ alert.type }}">
+		{{ alert.message }}
+		<a href="" class="close">&times;</a>
+	</div>
+	{% endif %}
+	
+	{% block content %}
+	<div class="row">
+		<div class="six columns centered">
+			<h1>Deej</h1>
+			<p>Congratulations, it's an application.</p>
+		</div>
+	</div>
+	{% endblock content %}
+	
+<footer>
+	<hr/>
+	<div class="row">
+		<div class="twelve columns">
+			<p>2013 <a href="http://fardogllc.com/" target="_blank">Far Dog LLC</a></p>
+		</div>
+	</div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}javascripts/foundation/jquery.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+{% dajaxice_js_import %}
+{% compressed_js 'deej_js' %}
+
+{% block additional_scripts %} {% endblock %}
+<script type="text/javascript">
+	window.static_base = "{{ STATIC_URL }}";
+</script>
+</body>
+</html>

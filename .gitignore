@@ -1,0 +1,14 @@
+venv
+cache
+*.pyo
+*.pyc
+upload
+assets/.sass-cache
+*.old
+settings_*.py
+fabconfig.py
+static
+media
+build
+contrib
+db

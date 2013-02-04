@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+	<div class="six columns offset-by-three" id="main-area">
+		<form id="record-form" action="/recording/" method="post">{% csrf_token %}
+			{{ record_form.as_p }}
+			<input type="submit" class="large success button expand" id="id_record" value="Start Recording" />
+		</form>
+		<form style="display: none;" id="stop-form" action="/recording/" method="post">{% csrf_token %}
+			<input type="submit" class="large alert button expand" id="id_stop" value="Stop Recording" />
+		</form>
+	</div>
+	<div class="three columns" id="status-area">
+		<div id="status"></div>
+	</div>
+</div>
+{% endblock content %}
+
+{% block additional_scripts %}
+<script type="text/javascript">
+	setInterval(check_status, 5000);
+	check_status();
+</script>
+{% endblock %}

@@ -1,0 +1,3 @@
+[submodule "soundkick"]
+	path = soundkick
+	url = git@github.com:fardog/soundkick.git

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="row">
+		<div class="six columns centered">
+			<ul class="block-grid one-up" id="user-list">
+				{% for user in view_data.users %}
+				<li><a href="#" data-username="{{ user.username }}" class="x-large secondary button">{{ user.username }}</a></li>
+				{% endfor %}
+			</ul>
+			<form id="login-form" style="display:none;" action="/login/" method="post">{% csrf_token %}
+				{{ login_form.as_p }}
+				<ul class="even two-up button-group">
+					<li><a href="#" class="large alert button" id="login-cancel">Cancel</a></li>
+					<li><input type="submit" class="large button" value="Log In" /></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

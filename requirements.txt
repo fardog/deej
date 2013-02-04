@@ -1,0 +1,7 @@
+Django==1.4.3
+argparse==1.2.1
+boto==2.7.0
+distribute==0.6.31
+django-dajaxice==0.5.4.1
+django-pipeline==1.2.24
+wsgiref==0.1.2
